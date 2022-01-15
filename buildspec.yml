@@ -6,7 +6,7 @@ phases:
       docker: 18
   pre_build:
     commands:
-      - aws ecr get-login-password --region ap-northeast-1 --profile terraform | docker login --username AWS --password-stdin https://924452605616.dkr.ecr.ap-northeast-1.amazonaws.com
+      - aws ecr get-login-password --region ap-northeast-1 | docker login --username AWS --password-stdin https://924452605616.dkr.ecr.ap-northeast-1.amazonaws.com
       - REPO=$(aws ecr describe-repositories --region ap-northeast-1 --repository-names example --output text --query "repositories[0].repositoryUri" --profile terraform)
       - IMAGE=$REPO:latest
   build:
